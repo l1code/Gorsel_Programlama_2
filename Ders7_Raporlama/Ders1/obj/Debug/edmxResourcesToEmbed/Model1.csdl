@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DersGunduzModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Kisi">
+    <Key>
+      <PropertyRef Name="KisiID" />
+    </Key>
+    <Property Name="KisiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TCNO" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DogumYeri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DogumTarihi" Type="DateTime" Precision="3" />
+    <Property Name="Cinsiyet" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="Resim" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Maas" Relationship="DersGunduzModel.FK_Maas_Kisi" FromRole="Kisi" ToRole="Maas" />
+  </EntityType>
+  <EntityContainer Name="DersGunduzEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Kisi" EntityType="Self.Kisi" />
+    <EntitySet Name="sysdiagrams" EntityType="DersGunduzModel.sysdiagrams" />
+    <EntitySet Name="Donem" EntityType="DersGunduzModel.Donem" />
+    <EntitySet Name="Maas" EntityType="DersGunduzModel.Maas" />
+    <AssociationSet Name="FK_Maas_Donem" Association="DersGunduzModel.FK_Maas_Donem">
+      <End Role="Donem" EntitySet="Donem" />
+      <End Role="Maas" EntitySet="Maas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Maas_Kisi" Association="DersGunduzModel.FK_Maas_Kisi">
+      <End Role="Kisi" EntitySet="Kisi" />
+      <End Role="Maas" EntitySet="Maas" />
+    </AssociationSet>
+    <EntitySet Name="vMaas" EntityType="DersGunduzModel.vMaas" />
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Donem">
+    <Key>
+      <PropertyRef Name="DonemID" />
+    </Key>
+    <Property Name="DonemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DonemAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Maas" Relationship="DersGunduzModel.FK_Maas_Donem" FromRole="Donem" ToRole="Maas" />
+  </EntityType>
+  <EntityType Name="Maas">
+    <Key>
+      <PropertyRef Name="MaasID" />
+    </Key>
+    <Property Name="MaasID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KisiId" Type="Int32" Nullable="false" />
+    <Property Name="DonemId" Type="Int32" />
+    <Property Name="MaasTutar" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <NavigationProperty Name="Donem" Relationship="DersGunduzModel.FK_Maas_Donem" FromRole="Maas" ToRole="Donem" />
+    <NavigationProperty Name="Kisi" Relationship="DersGunduzModel.FK_Maas_Kisi" FromRole="Maas" ToRole="Kisi" />
+  </EntityType>
+  <Association Name="FK_Maas_Donem">
+    <End Type="DersGunduzModel.Donem" Role="Donem" Multiplicity="0..1" />
+    <End Type="DersGunduzModel.Maas" Role="Maas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Donem">
+        <PropertyRef Name="DonemID" />
+      </Principal>
+      <Dependent Role="Maas">
+        <PropertyRef Name="DonemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Maas_Kisi">
+    <End Type="DersGunduzModel.Kisi" Role="Kisi" Multiplicity="1" />
+    <End Type="DersGunduzModel.Maas" Role="Maas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kisi">
+        <PropertyRef Name="KisiID" />
+      </Principal>
+      <Dependent Role="Maas">
+        <PropertyRef Name="KisiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="vMaas">
+    <Key>
+      <PropertyRef Name="MaasID" />
+      <PropertyRef Name="MaasTutar" />
+      <PropertyRef Name="KisiId" />
+    </Key>
+    <Property Name="TCNO" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaasID" Type="Int32" Nullable="false" />
+    <Property Name="DonemId" Type="Int32" />
+    <Property Name="DonemAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaasTutar" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="KisiId" Type="Int32" Nullable="false" />
+  </EntityType>
+</Schema>

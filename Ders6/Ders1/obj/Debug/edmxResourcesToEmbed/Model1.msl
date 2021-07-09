@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DersGunduzModelStoreContainer" CdmEntityContainer="DersGunduzEntities">
+    <EntitySetMapping Name="Kisi">
+      <EntityTypeMapping TypeName="DersGunduzModel.Kisi">
+        <MappingFragment StoreEntitySet="Kisi">
+          <ScalarProperty Name="KisiID" ColumnName="KisiID" />
+          <ScalarProperty Name="TCNO" ColumnName="TCNO" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="DogumYeri" ColumnName="DogumYeri" />
+          <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+          <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+          <ScalarProperty Name="Resim" ColumnName="Resim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DersGunduzModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Donem">
+      <EntityTypeMapping TypeName="DersGunduzModel.Donem">
+        <MappingFragment StoreEntitySet="Donem">
+          <ScalarProperty Name="DonemAd" ColumnName="DonemAd" />
+          <ScalarProperty Name="DonemID" ColumnName="DonemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Maas">
+      <EntityTypeMapping TypeName="DersGunduzModel.Maas">
+        <MappingFragment StoreEntitySet="Maas">
+          <ScalarProperty Name="MaasTutar" ColumnName="MaasTutar" />
+          <ScalarProperty Name="DonemId" ColumnName="DonemId" />
+          <ScalarProperty Name="KisiId" ColumnName="KisiId" />
+          <ScalarProperty Name="MaasID" ColumnName="MaasID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vMaas">
+      <EntityTypeMapping TypeName="DersGunduzModel.vMaas">
+        <MappingFragment StoreEntitySet="vMaas">
+          <ScalarProperty Name="KisiId" ColumnName="KisiId" />
+          <ScalarProperty Name="MaasTutar" ColumnName="MaasTutar" />
+          <ScalarProperty Name="DonemAd" ColumnName="DonemAd" />
+          <ScalarProperty Name="DonemId" ColumnName="DonemId" />
+          <ScalarProperty Name="MaasID" ColumnName="MaasID" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="TCNO" ColumnName="TCNO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

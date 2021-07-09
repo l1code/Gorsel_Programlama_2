@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DersGunduzModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Kisi">
+    <Key>
+      <PropertyRef Name="KisiID" />
+    </Key>
+    <Property Name="KisiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TCNO" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DogumYeri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DogumTarihi" Type="DateTime" Precision="3" />
+    <Property Name="Cinsiyet" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="Resim" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Maas" Relationship="DersGunduzModel.FK_Maas_Kisi" FromRole="Kisi" ToRole="Maas" />
+  </EntityType>
+  <EntityContainer Name="DersGunduzEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Kisi" EntityType="Self.Kisi" />
+    <EntitySet Name="Maas" EntityType="DersGunduzModel.Maas" />
+    <EntitySet Name="sysdiagrams" EntityType="DersGunduzModel.sysdiagrams" />
+    <AssociationSet Name="FK_Maas_Kisi" Association="DersGunduzModel.FK_Maas_Kisi">
+      <End Role="Kisi" EntitySet="Kisi" />
+      <End Role="Maas" EntitySet="Maas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Maas">
+    <Key>
+      <PropertyRef Name="MaasID" />
+    </Key>
+    <Property Name="MaasID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KisiId" Type="Int32" Nullable="false" />
+    <Property Name="MaasTutar" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Kisi" Relationship="DersGunduzModel.FK_Maas_Kisi" FromRole="Maas" ToRole="Kisi" />
+    <Property Name="Donem" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Maas_Kisi">
+    <End Type="DersGunduzModel.Kisi" Role="Kisi" Multiplicity="1" />
+    <End Type="DersGunduzModel.Maas" Role="Maas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kisi">
+        <PropertyRef Name="KisiID" />
+      </Principal>
+      <Dependent Role="Maas">
+        <PropertyRef Name="KisiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

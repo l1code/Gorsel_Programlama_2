@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="40c89b679b014420a947c555942b4eaf" Name="Diagram1">
+        <EntityTypeShape EntityType="DersGunduzModel.Kisi" Width="1.5" PointX="3.375" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DersGunduzModel.sysdiagrams" Width="1.5" PointX="0.5" PointY="3.125" />
+        <EntityTypeShape EntityType="DersGunduzModel.Donem" Width="1.5" PointX="3.875" PointY="3.875" />
+        <EntityTypeShape EntityType="DersGunduzModel.Maas" Width="1.5" PointX="6.125" PointY="2" />
+        <AssociationConnector Association="DersGunduzModel.FK_Maas_Donem" />
+        <AssociationConnector Association="DersGunduzModel.FK_Maas_Kisi" />
+        <EntityTypeShape EntityType="DersGunduzModel.vMaas" Width="1.5" PointX="8.125" PointY="2.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
